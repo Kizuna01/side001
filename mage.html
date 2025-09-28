@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>法師裝備查價系統</title>
+    <style>
+        .aboubtn_title_curr {
+            color: #ffffff;
+            padding: 4px 20px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            border-radius: 1.2rem;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 3px;
+            background-color: #6aa0b3;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row form-inline">
+            <div class="aboubtn_title_curr">
+                法師裝備查價系統
+            </div>
+        </div>
+        <div class="row mt-5 ">
+            <div class="col-md-4">
+                <select class="form-control" name="title" id="title">
+
+                </select>
+            </div>
+            <div class="col-md-1 text-end">
+                <label class="" for="ap">ap</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="ap">
+            </div>
+            <div class="col-md-2">
+                <input type="checkbox" class="form-check-input" id="clear" name="clear">
+                <label class="form-check-label" for="flexSwitchCheckChecked">乾淨</label>
+            </div>
+            <div class="col-md-1 ">
+                <a class="btn btn-primary" href="javascript:void(0)" onclick="go()">搜尋</a>
+            </div>
+            <div class="col-md-1 d-none">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    新增
+                </button>
+            </div>
+      
+            
+        </div>
+        <table class="table">
+            <thead>
+                <th>名稱</th>
+                <th>ap</th>
+                <th>價格(億)</th>
+                <th>日期</th>
+                <th>備註</th>
+            </thead>
+            <tbody id="content">
+
+            </tbody>
+        </table>
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">裝備新增</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body"> 
+                        <table class="table table-borderless">
+                            <tr>
+                                <td >名稱</td>
+                                <td > 
+                                   <select id="title_keyin" class="form-control">
+                                        
+                                   </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >ap</td>
+                                <td > 
+                                    <input id="ap_keyin" type="number" class="form-control" >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >成交價格</td>
+                                <td > 
+                                    <input id="price_keyin" type="text" class="form-control" >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >備註</td>
+                                <td > 
+                                    <input id="note_keyin" type="text" class="form-control" >
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        
+                        
+                            
+                        
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                        <button type="button" class="btn btn-primary" onclick="insert()">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  
+
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script>
+        var jsonData;
+        $(document).ready(function () {
+            const titles=["請選擇","頭盔","面具","套服","披風","手套","鞋子","肩膀","項鍊","腰帶","龍骨","聖龍","大冰杖","大火杖"]
+            titles.forEach(function (value) {
+                    console.log(value)
+                    var title
+                    title = '<option value="' + value + '">' + value + '</option>'
+                    $("#title_keyin").append(title)
+
+            })
+            const titleAry = new Set()
+            $.get("magic.txt", function (data) {
+                console.log(data)
+                data = "[" + data + "]"
+                try {
+                    // 嘗試將檔案內容轉為 JSON 格式
+                    jsonData = JSON.parse(data);
+                    console.log('轉換後的 JSON 內容:', jsonData);
+
+                } catch (error) {
+                    console.error('無法解析為 JSON:', error);
+                    $('#jsonContent').text('無法將檔案內容解析為 JSON，請確認檔案內容格式是否正確。');
+                }
+
+                $.each(jsonData, function (index, value) {
+                    var txt = '<tr>'
+                    txt += '<td>' + value["name"] + '</td>'
+                    txt += '<td>' + value["ap"] + '</td>'
+                    txt += '<td>' + value["price"] + '</td>'
+                    txt += '<tr>'
+                    //$("#content").append(txt)
+
+                });
+                //先把重複向去除，存入titleAry
+                $.each(jsonData, function (index, value) {
+                    titleAry.add(value["name"])
+                });
+
+                titleAry.forEach(function (value) {
+                    console.log(value)
+                    var title
+                    title = '<option value="' + value + '">' + value + '</option>'
+                    $("#title").append(title)
+
+                })
+            }).fail(function () {
+                alert('無法讀取檔案，請檢查伺服器是否正確運行，並檢查檔案路徑。');
+            });
+
+        });
+        function go() {
+            var count = 0
+            var txt = ""
+            var title = $("#title").val();
+            var ap = $("#ap").val()
+            var clear
+            if($('input[name="clear"]').is(':checked')){
+                 clear = "Y"
+            }else{
+                clear = "N"
+            }
+            $("#content").empty();
+            $.each(jsonData, function (index, value) {
+                if (ap != "") {
+                    if (value["name"] == title && ap == value["ap"] && clear == value["clear"]) {
+                        txt += '<tr>'
+                        txt += '<td>' + value["name"] + '</td>'
+                        txt += '<td>' + value["ap"] + '</td>'
+                        txt += '<td>' + value["price"] + '</td>'
+                        txt += '<td>' + value["date"] + '</td>'
+                        txt += '<td>' + value["note"] + '</td>'
+                        
+                        txt += '<tr>'
+                        count += 1
+                    }
+                } else {
+                    if (value["name"] == title && clear == value["clear"]) {
+                        txt += '<tr>'
+                        txt += '<td>' + value["name"] + '</td>'
+                        txt += '<td>' + value["ap"] + '</td>'
+                        txt += '<td>' + value["price"] + '</td>'
+                        txt += '<td>' + value["date"] + '</td>'
+                        txt += '<td>' + value["note"] + '</td>'
+                        txt += '<tr>'
+                        count += 1
+                    }
+                }
+
+            });
+            if (count) {
+                $("#content").append(txt)
+            } else {
+
+                $("#content").append('<tr><td colspan="4" class="text-center">查無資料</td></tr>')
+            }
+
+        }
+       function insert(){
+            var title_keyin=$("#title_keyin").val()
+            var ap_keyin=$("#ap_keyin").val()
+            var price_keyin=$("#price_keyin").val()
+            var note_keyin=$("#note_keyin").val()
+            var id=jsonData[jsonData.length-1]["id"]
+            /*if(title_keyin=="請選擇"){
+
+                alert("請選擇裝備")
+            }
+            if(ap_keyin=="" || price_keyin==""){
+
+                alert("價格 ap 不可空白")
+            }*/
+
+            var txt='{"'+id+'":3,"name":"'+title_keyin+'","ap":'+ap_keyin+',"price":"'+price_keyin+'","note":"'+note_keyin+'","fdate":""}'
+            
+           
+           
+            
+       }
+    </script>
+</body>
+
+</html>

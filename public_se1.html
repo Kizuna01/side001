@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>產品介紹</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="h2 d-flex align-items-center  justify-content-center position-relative">
+      <span class="display-4"><i class="bi bi-camera2"></i>&nbsp;</span>
+      <span>活動花絮</span>
+      <a class="btn border  position-absolute" style="right:10px;" href="#" title="更多活動花絮">more</a>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-4 mb-5">
+        <a title="電解技術" href="#">
+          <div class="mt-3 p-3  shadow-sm">
+            <div class="card-img">
+              <div class="square"></div>
+              <div class="square2"></div>
+              <img src="img/bear.jpg" class="img-fluid card-img-top " alt="電解技術">
+            </div>
+            <div class="card-body bg-light">
+              <p class="card-text text-center fs-l">電解技術</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-md-4 mb-5">
+        <a title="電解技術" href="#">
+          <div class="mt-3 p-3  shadow-sm">
+            <div class="card-img">
+              <div class="square"></div>
+              <div class="square2"></div>
+              <img src="img/bear.jpg" class="img-fluid card-img-top " alt="電解技術">
+            </div>
+            <div class="card-body bg-light">
+              <p class="card-text text-center fs-l">電解技術</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-md-4 mb-5">
+        <a title="電解技術" href="#">
+          <div class="mt-3 p-3  shadow-sm">
+            <div class="card-img">
+              <div class="square"></div>
+              <div class="square2"></div>
+              <img src="img/bear.jpg" class="img-fluid card-img-top " alt="電解技術">
+            </div>
+            <div class="card-body bg-light">
+              <p class="card-text text-center fs-l">電解技術</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="row">
+
+      
+
+      <div class="col-md-4">
+        <div class="card border border-secondary" style="width: 18rem;">
+          <a href="#" title="#">
+            <div class="card-img shadow-sm">
+              <div class="square"></div>
+              <div class="square2"></div>
+              <img class="card-img-top" style="height: 300px;" src="img/bear.jpg" alt="Card image cap">
+            </div>
+            <div class="card-body">
+              <p class="card-text">20240201142947</p>
+              <h5>APO晶英國際捐贈再生電腦，讓愛永續！</h5>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card border border-secondary" style="width: 18rem;">
+          <a href="#" title="#">
+            <div class="card-img">
+              <div class="square"></div>
+              <div class="square2"></div>
+              <img class="card-img-top" style="height: 300px;" src="img/bear2.jpg" alt="Card image cap">
+            </div>
+            <div class="card-body">
+              <p class="card-text">20240201142947</p>
+              <h5>APO晶英國際捐贈再生電腦，讓愛永續！</h5>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <style>
+    .card-img {
+      position: relative;
+    }
+
+    .square {
+      width: 50px;
+      /* 初始宽度 */
+      height: 50px;
+      /* 初始高度 */
+      background-color: rgba(52, 152, 219, 0.5);
+      /* 初始背景颜色 */
+      transition: width 0.4s, height 0.4s;
+      /* 过渡宽度和高度的动画效果，持续时间为1秒 */
+      transform-origin: bottom right;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    .square2 {
+      width: 50px;
+      height: 50px;
+      /*方塊的標誌與背景色*/
+      background: url(img/plus.png) no-repeat center center #0ba29b;
+      background-size: 18px auto;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+    }
+
+    a:hover .square2 {
+
+      animation: moveBox 0.4s ease-in-out forwards;
+    }
+
+    /*transform bottom  right這些定位，可能要依圖片大小設定有所不同*/
+    @keyframes moveBox {
+      to {
+        transform: translate(50%, 50%);
+        bottom: 50%;
+        right: 50%;
+        border-radius: 50%;
+        /*圓形的外圈顏色*/
+        border: solid rgb(102, 158, 135) 5px;
+      }
+    }
+
+    a:hover .square {
+      width: 100%;
+      /* 悬停时的宽度 */
+      height: 100%;
+      /* 悬停时的高度 */
+    }
+
+    a {
+      text-decoration: none;
+      color: black
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  </style>
+  <script>
+
+  </script>
+</body>
+
+</html>
+
+
+
+<style>
+  .about_title {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .aboubtn_title_curr {
+    order: 3px solid #e5e5e5;
+    background: #236db3;
+    color: #fff;
+    padding: 4px 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: 1.1rem;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin: 3px;
+  }
+</style>

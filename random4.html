@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css">
+    <title>翻牌抽籤</title>
+    <style>
+        .aboubtn_title_curr {
+            color: #ffffff;
+            padding: 4px 20px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            border-radius: 1.2rem;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 3px;
+            background-color: #6aa0b3;
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+            perspective: 1000px;
+            /* 添加透視效果 */
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .card.flip .card-inner {
+            transform: rotateX(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+
+        .card-front {
+            background: url('img/bear.jpg') no-repeat center/cover;
+            /* 前面圖片 */
+        }
+
+        .card-back {
+            background: url('img/bear2.jpg') no-repeat center/cover;
+            /* 背面圖片 */
+            transform: rotateX(180deg);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row ">
+            <div class="aboubtn_title_curr">
+                毛絨絨抽獎系統
+            </div>
+        </div>
+
+        <textarea name="fileInput" id="fileInput" rows="20" cols="50"></textarea>
+        <a class="btn btn-primary mt-3" href="javascript:void(0)" onclick="submit()">送出</a>
+        <div class="row">
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front"></div>
+                    <div class="card-back"></div>
+                </div>
+            </div>
+
+
+        </div>
+
+        
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+        });
+        function flipCard(card) {
+            card.classList.toggle('flip');
+            //如果該class不存在，添加該class
+            //如果該class已存在，移除該class
+            //addClass 僅可增加
+        }
+        function submit() {
+
+            var content = $("#fileInput").val();
+            const lines = content.split('\n');
+            console.log(lines)
+
+        }
+
+        var count = 1;
+        var count_full = 1;
+        function random(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function start() {
+            if (list.length == 0) {
+                alert("抽完了")
+                return false
+            }
+            var x = random(0, list.length - 1)
+
+            var txt = count + '.' + list[x] + "<br>"
+            $('#result').append(txt);
+
+            list = list.filter(function (item) {
+                return item !== list[x]
+            });
+            count += 1
+        }
+
+        function startFull() {
+            if (full.length == 0) {
+                alert("抽完了")
+                return false
+            }
+            var x = random(0, full.length - 1)
+
+            var txt = count_full + '.' + full[x] + "<br>"
+            $('#full').append(txt);
+
+            full = full.filter(function (item) {
+                return item !== full[x]
+            });
+            count_full += 1
+        }
+    </script>
+</body>
+
+</html>

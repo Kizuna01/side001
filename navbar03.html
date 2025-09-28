@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>測試網頁</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mycss.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Playfair+Display:wght@500&family=Roboto+Serif:ital,opsz,wght@1,8..144,500&display=swap"
+    rel="stylesheet">
+  <style>
+    .navbar-fixed-top {
+
+      position: fixed;
+    }
+
+    /*narbar 下拉後的背景顏色*/
+    nav.nav_down_bg {
+      background: rgb(255 255 255);
+    }
+
+    /*narbar 透明度 顏色*/
+     .navbar {
+      min-height: 70px;
+      transition: all 0.3s;
+      border-bottom: 1px solid transparent;
+      background: rgb(255 213 59 / 0%);
+      /*background: rgb(255 255 255 / 100%);*/
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top" id="menu">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <img src="img/cake.jpg" alt="">
+  <img src="img/cake.jpg" alt="">
+  <img src="img/cake.jpg" alt="">
+  <img src="img/cake.jpg" alt="">
+  <img src="img/cake.jpg" alt="">
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-3.7.0.min.js"></script>
+  <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".dropdown").each(function (index, element) {
+        var $this_menu = $(element);
+        $this_menu.find('.dropdown-menu a').last().focusout(function () {
+          $this_menu.removeClass('show');
+          $this_menu.find('.dropdown-menu').removeClass('show');
+        });
+      });
+    });
+    var lastScrollTop = 0;
+    window.addEventListener("scroll", function () {
+      var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (lastScrollTop < 10) {
+        $("#menu").css("background: rgb(255 255 255 / 100%)");
+        $("#menu").removeClass("nav_down_bg");
+        $('.nav-link').css('color', '');
+        $(".bi-globe2").addClass("text-white");
+        $("#menu").css("padding-top", "30px");
+
+
+      } else {
+        $("#menu").addClass("nav_down_bg");
+        $("#menu").css("padding-top", "10px");
+        $('.nav-link').css('color', 'black');
+        $(".bi-globe2").removeClass("text-white");
+
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // 重置滚动位置
+    }, false);
+
+
+    var count = 0;
+    $(".hamburger").click(function () {
+      //漢堡點開變黑色，關閉變白色
+      count += 1;
+      if (count % 2 != 0) {
+        $('.hamburger span').css('background-color', '#000000');
+      } else {
+        $('.hamburger span').css('background-color', '#ffffff');
+      }
+
+    })
+
+    function openSearch() {
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function closeSearch() {
+      document.getElementById("myOverlay").style.display = "none";
+    }
+  </script>
+</body>
+
+</html>

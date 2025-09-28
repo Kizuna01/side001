@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>讀檔抽籤</title>
+    <style>
+        .navbar-light .navbar-nav .nav-link {
+            color: #007788;
+            font-size: 1.3rem;
+            letter-spacing: 0.05rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="">
+            <div class="row">
+                <h3>檔案內容 (僅適用於文字檔案 .txt)</h3>
+                <input  type="file" class="form-control" id="fileInput"  >
+            </div>
+            
+        </form>
+        
+        <div id="fileContent"></div>
+        
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 當檔案改變時觸發
+            $('#fileInput').on('change', function (event) {
+                const files = event.target.files; // 獲取選擇的檔案清單
+                $('#fileContent').text(''); // 清除先前的文字內容
+                $('#imagePreview').empty(); // 清除先前的圖像預覽
+
+                // 迴圈讀取每一個檔案
+                const list=[]
+                $.each(files, function (index, file) {
+                    const reader = new FileReader();
+
+                    // 判斷檔案類型
+                    if (file.type.startsWith('text/')) {
+                        // 讀取文字檔案 (.txt)
+                        reader.onload = function (e) {
+                            $('#fileContent').append(`檔名: ${file.name}\n`);
+                            $('#fileContent').append(e.target.result + '\n\n');
+                            list.push(e.target.result)
+                        };
+                        reader.readAsText(file); // 讀取文字檔案內容
+                    } else if (file.type.startsWith('image/')) {
+                        // 讀取圖片檔案 (.jpg, .png)
+                        reader.onload = function (e) {
+                            const img = $('<img>').attr('src', e.target.result).css({
+                                width: '200px',
+                                margin: '10px'
+                            });
+                            $('#imagePreview').append(img);
+                        };
+                        reader.readAsDataURL(file); // 讀取圖片作為 Data URL
+                    } else {
+                        console.warn('不支援的檔案類型:', file.type);
+                    }
+                });
+                console.log(list)
+            });
+        });
+
+    </script>
+</body>
+
+</html>

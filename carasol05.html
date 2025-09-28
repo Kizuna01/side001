@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>輪播版型_圖片</title>
+    <link rel="stylesheet" href="carasol/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons-1.11.3/font/bootstrap-icons.css"><!-- icon: bi-->
+    <link href="css/fontawesome-free-6.7.1/css/all.css" rel="stylesheet"><!-- icon: fa-->
+    <style>
+     
+    </style>
+</head>
+
+<body>
+
+    <section class="photo-area my-4 px-5">
+        <div class="tit h2 d-flex align-items-center items justify-content-center text-purple position-relative">
+            <span class="display-4"><i class="bi bi-camera2"></i>&nbsp;</span>
+            <span>活動花絮</span>
+            <a class="btn border border-purple text-purple position-absolute" style="right:10px;" href="#"
+                title="更多活動花絮">more</a>
+        </div>
+
+
+        <div class="activeys">
+            <div class="container-fluid pb-3">
+                <div class="owl-carousel owl-theme owltActivey">
+                    <!--- foreach  --->
+                    <div class="item">
+
+                        <div class="card">
+                            <a class="d-block" href="#" title="01">
+                                <div class="overlay">
+                                    <i class="far fa-images icon"></i>
+                                </div>
+                                <div class="card-img-top">
+                                    <img src="img/bear.jpg" alt="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-title">01</div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="card">
+                            <a class="d-block" href="#" title="01">
+                                <div class="overlay">
+                                    <i class="far fa-images icon"></i>
+                                </div>
+                                <div class="card-img-top">
+                                    <img src="img/bear.jpg" alt="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-title">01</div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="card">
+                            <a class="d-block" href="#" title="01">
+                                <div class="overlay">
+                                    <i class="far fa-images icon"></i>
+                                </div>
+                                <div class="card-img-top">
+                                    <img src="img/bear.jpg" alt="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-title">01</div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="card">
+                            <a class="d-block" href="#" title="01">
+                                <div class="overlay">
+                                    <i class="far fa-images icon"></i>
+                                </div>
+                                <div class="card-img-top">
+                                    <img src="img/bear.jpg" alt="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-title">01</div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="card">
+                            <a class="d-block" href="#" title="01">
+                                <div class="overlay">
+                                    <i class="far fa-images icon"></i>
+                                </div>
+                                <div class="card-img-top">
+                                    <img src="img/bear.jpg" alt="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-title">01</div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                    <!--- /foreach --->
+                </div>
+
+                <noscript>您的瀏覽器不支援JavaScript功能，若「活動花絮」輪播無法正常使用時，請開啟瀏覽器JavaScript狀態，謝謝！</noscript>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="carasol/owl.carousel.min.js"></script>
+    <script>
+        $(window).on('load', function () {
+            $('.owltActivey').owlCarousel({
+                loop: false,
+                margin: 10,
+                nav: false,
+                dots: true,
+                autoplay: false,
+                autoplayTimeout: 2000,
+                autoplayHoverPause: false,
+                autoHeight: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 4
+                    }
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

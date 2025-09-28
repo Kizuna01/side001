@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.css">
+    <title>監聽2</title>
+    <style>
+        .aboubtn_title_curr {
+            color: #ffffff;
+            padding: 4px 20px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            border-radius: 1.2rem;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 3px;
+            background-color: #6aa0b3;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label">名稱</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="title" placeholder="名稱">
+            </div>
+            <a class="btn btn-primary" href="javascript:void(0)" onclick="submit()">送出</a>
+        </div>
+        <hr>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sale" id="sale1" value="上架" checked>
+            <label class="form-check-label" for="sale1">
+                上架
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sale" id="sale2" value="下架">
+            <label class="form-check-label" for="sale2">
+                下架
+            </label>
+        </div>
+        <a class="btn btn-primary" href="javascript:void(0)" onclick="submit2()">送出</a>
+        <hr>
+
+        <div class="form-check form-check">
+            <input class="form-check-input" type="radio" name="layout" id="layout1" value="A" checked>
+            <label class="form-check-label" for="sale1">
+                A
+            </label>
+        </div>
+        <div class="form-check form-check">
+            <input class="form-check-input" type="radio" name="layout" id="layout2" value="B">
+            <label class="form-check-label" for="sale2">
+                B
+            </label>
+        </div>
+
+        <a class="btn btn-primary" href="javascript:void(0)" onclick="submit3()">送出</a>
+
+        <hr>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="active"
+                onclick="submit4()">
+            <label class="form-check-label" for="flexSwitchCheckChecked">開啟</label>
+        </div>
+        <hr>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="show" name="show"
+                onclick="submit7()">
+            <label class="form-check-label" for="show">顯示</label>
+        </div>
+        <hr>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="check1" name="check" value="option1">
+            <label class="form-check-label" for="check1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="check2" name="check" value="option2">
+            <label class="form-check-label" for="check2">2</label>
+        </div>
+        <a class="btn btn-primary" href="javascript:void(0)" onclick="submit5()">送出1(.each)</a>
+        <a class="btn btn-primary" href="javascript:void(0)" onclick="submit6()">送出2(map.get)</a>
+        <a class="btn btn-primary" href="javascript:void(0)" onclick="submit8()">重置.prop('checked', false)</a>
+        <hr>
+
+        <div id="result">
+
+        </div>
+    </div>
+
+
+
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+
+    <script>
+        function submit() {
+            var title = $("#title").val();
+            $("#result").html(title)
+        }
+
+        function submit2() {
+            var sale = $('input[name="sale"]:checked').val()
+            $("#result").html(sale)
+        }
+
+        function submit3() {
+            var sale = $('input[name="layout"]:checked').val()
+            $("#result").html(sale)
+        }
+
+        function submit4() {
+            //檢查 name="actvie" 的元素 是否為選取狀態
+            // 任一個 name="active" 只要有一個選取 就會返回 true
+            var sale = $('input[name="active"]').is(':checked')
+            if (sale) {
+                alert("開啟")
+            } else {
+                alert("關閉")
+            }
+        }
+
+        function submit7() {
+            //prop獲取或設置 checked 狀態
+            //但只能檢查第一個選項，需小心
+            var sale = $('input[name="show"]').prop('checked')
+            if (sale) {
+                alert("顯示")
+            } else {
+                alert("隱藏")
+            }
+        }
+
+        function submit8() {
+            //prop 設置狀態的應用
+            //把所有選取的，都取消掉
+            $('input[name="check"]').prop('checked',false)
+        }
+
+        function submit5() {
+
+            $('input[name="check"]:checked').each(function () {
+                $("#result").append(this.value)
+            })
+        }
+
+        function submit6() {
+            /*
+                $('input[name="check"]:checked')：選擇所有被選中的 checkbox。
+                .map(function() { return this.value; })：從每個被選中的 checkbox 中提取其 value 屬性。
+                .get()：將 jQuery 物件轉換為標準的 JavaScript 陣列。
+                選擇的值會以 ['option1', 'option2'] 的形式返回。
+            */
+            const selectedValues = $('input[name="check"]:checked').map(function () {
+                return this.value; 
+            }).get(); 
+
+            if (selectedValues.length > 0) {
+                alert('選中的值是：' + selectedValues.join(', '));
+            } else {
+                alert('尚未選擇任何選項');
+            }
+        }
+
+        function radio01() {
+
+            //這個選擇器會選擇 name="sale" 的 radio 按鈕中被選中的那一個。
+            //通常與 .val() 結合使用，以獲取被選中按鈕的值。
+            var sale = $('input[name="sale"]:checked').val()
+            console.log(sale)
+        }
+
+    </script>
+</body>
+
+</html>

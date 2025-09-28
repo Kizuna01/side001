@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>抽籤</title>
+    <style>
+        .navbar-light .navbar-nav .nav-link {
+            color: #007788;
+            font-size: 1.3rem;
+            letter-spacing: 0.05rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" id="random">
+            <div class="col-md-4">
+                <label for="rand1">隨機物1</label>
+                <input class="form-control rand" type="text">
+            </div>
+            <div class="col-md-4">
+                <label for="rand2">隨機物2</label>
+                <input class="form-control rand" type="text">
+            </div>
+            <div class="col-md-4">
+                <label for="rand3">隨機物3</label>
+                <input class="form-control rand" type="text">
+            </div>
+        </div>
+        <hr>
+        <div id="spin"></div>
+        <div class="row mt-5">
+            <div class="col-md-2">
+                <a class="btn btn-primary" href="javascript:void(0)" onclick="insert()">新增</a>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary" href="javascript:void(0)" onclick="show()">送出</a>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary" href="javascript:void(0)" onclick="start(this)">開始</a>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary" href="javascript:void(0)" onclick="spin(this)">拉霸</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script>
+
+
+        function show() {
+            // 選取所有帶有 class="rand" 的元素並獲取值
+            const values = $('.rand').map(function () {
+                //空白則不丟進去陣列
+                if ($(this).val() != "") {
+                    return $(this).val(); // 獲取當前元素的值
+                }
+            }).get(); // 將 jQuery 對象轉換為普通數組
+
+            // 在控制台列印值
+            //console.log('所有 rand 標籤的值：', values);
+
+            var num = random(0, values.length - 1)
+            // 顯示彈窗（可選）
+            //alert('所有 rand 標籤的值：\n' + values.join('\n'));
+            alert("抽中" + values[num])
+        }
+
+        function random(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function insert() {
+            const values = $('.rand').map(function () {
+                return $(this).val();
+            }).get();
+            var num = values.length + 1
+            var str = '<div class="col-md-4"><label for="rand' + num + '">隨機物' + num + '</label><input class="form-control rand" type="text"></div>'
+            $("#random").append(str);
+        }
+
+        //開始 停止
+        var spn
+        var num = 0
+        function start(obj) {
+            if (num) {
+                clearInterval(spn)
+                num = num - 1
+                //改變按鈕外貌
+                $(obj).removeClass("btn-danger")
+                $(obj).addClass("btn-primary")
+                $(obj).text("開始")
+            } else {
+                const texts = $('.rand').map(function () {
+                    if ($(this).val() != "") {
+                        return $(this).val();
+                    }
+                }).get();
+                let index = 0;
+
+                spn = setInterval(function () {
+
+                    $("#spin").html('<h3>' + texts[index] + '</h3>');
+                    console.log(num)
+                    //console.log(texts[index]);
+
+                    // 循環索引
+                    index = (index + 1) % texts.length;
+                }, 100)
+                num++
+                //改變按鈕外貌
+                $(obj).removeClass("btn-primary")
+                $(obj).addClass("btn-danger")
+                $(obj).text("停止")
+
+            }
+
+        }
+
+
+        //轉動
+        function spin(obj) {
+            const texts = $('.rand').map(function () {
+                if ($(this).val() != "") {
+                    return $(this).val();
+                }
+            }).get();
+            let index = 0;
+
+            spn = setInterval(function () {
+
+                $("#spin").html('<h3>' + texts[index] + '</h3>');
+
+                index = (index + 1) % texts.length;
+                $(obj).addClass("d-none")
+            }, 100)
+            setTimeout(function () {
+                clearInterval(spn)
+                $(obj).removeClass("d-none")
+
+                const values = $('.rand').map(function () {
+                    //空白則不丟進去陣列
+                    if ($(this).val() != "") {
+                        return $(this).val(); // 獲取當前元素的值
+                    }
+                }).get(); // 將 jQuery 對象轉換為普通數組
+
+                // 在控制台列印值
+                //console.log('所有 rand 標籤的值：', values);
+
+                var num = random(0, values.length - 1)
+              
+               $("#spin").html('<h3>' + values[num] + '</h3>');
+               
+
+            }, 2000)
+
+        }
+    </script>
+</body>
+
+</html>

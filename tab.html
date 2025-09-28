@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>頁籤</title>
+   
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/tab.css">
+</head>
+
+<body>
+    <div class="row tab">
+        <div class="col-md-4">
+
+        </div>
+        <!--
+        tabindex=”0" 使元素可聚焦，且使用 Tab 鍵跳轉時，跳轉順序會按照 DOM 的排列順序進行導航 DOM:文件物件模型
+        tabindex=”-1" 僅允許透過 JavaScript 呼叫元素的 focus 方法來聚焦到元素上，而不能使用鍵盤 tab 鍵來聚焦
+        tabindex=”1"（或任何大於 1 的數值）允許元素透過鍵盤 tab 鍵獲得焦點，並可以自定其在 tab 導航中的移動順序。然而，使用大於 1 的值是一種 anti-pattern 我們應該避免這樣做。
+        -->
+        <div class="col-md-8">
+            <nav class="px-md-4">
+                <div class="nav nav-tabs nav-tabs nav-justified pt-3 pb-1 d-flex justify-content-round" id="nav-tab"
+                    role="tablist">
+                    <a class="nav-item nav-link active" id="nav-new-tab" tabindex="-1" data-toggle="tab" href="#nav-new"
+                        role="tab" aria-controls="nav-new" aria-selected="true"><i
+                            class="bi bi-megaphone"></i>&nbsp;最新消息</a>
+
+                    <a class="nav-item nav-link ml-1" id="nav-events-tab" tabindex="-1" data-toggle="tab"
+                        href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="true"><i
+                            class="bi bi-newspaper"></i>&nbsp;衛較專區</a>
+
+                    <a class="nav-item nav-link ml-1" id="nav-newstxt-tab" tabindex="-1" data-toggle="tab"
+                        href="#nav-newstxt" role="tab" aria-controls="nav-newstxt" aria-selected="true"><i
+                            class="bi bi-person-plus"></i>&nbsp;相關書籍</a>
+
+                </div>
+            </nav>
+
+            <div class="tab-content pb-4 mb-4 mx-md-4 border-top" id="nav-tabContent">
+
+
+                <!-- 最新消息start -->
+                <div class="tab-pane fade show active" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
+                    <div class="row newsTxt position-relative">
+                        <ul class="w-100">
+                            <!-- foreach  -->
+                            <li class="mt-1 ">
+                                <div class="text-nowrap text-truncate ">
+                                    <a href="#" title="">
+                                        <span class="date">
+                                            2024-11-20
+                                        </span>
+                                        <span class="subTitle">
+                                            【掛號費調整公告】 ，自 113 年 5 月 1 日起實施。
+                                        </span>
+
+                                        <span class="badge badge-success mx-1">
+                                            單位
+                                        </span>
+
+                                        <!--置頂-->
+                                        <span class="badge badge-danger mx-1">★TOP</span>
+
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li class="mt-1 ">
+                                <div class="text-nowrap text-truncate ">
+                                    <a href="#" title="">
+                                        <span class="date">
+                                            2024-11-20
+                                        </span>
+                                        <span class="subTitle">
+                                            標題
+                                        </span>
+
+                                        <span class="badge badge-success mx-1">
+                                            單位
+                                        </span>
+
+                                        <!--置頂-->
+                                        <span class="badge badge-danger mx-1">★TOP</span>
+
+                                    </a>
+                                </div>
+                            </li>
+                            <!-- /foreach -->
+                        </ul>
+                        <div class="col-12 text-center mb-2">
+                            <button id="news-more" class="btn btn-outline-danger  btn-sm" title="更多最新消息">
+                                更多最新消息
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 最新消息end -->
+
+                <!-- 衛教專區start -->
+                <div class="tab-pane" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+                    <div class="row newsTxt position-relative">
+                        <ul class="w-100">
+                            <!--- foreach from=$health_list key=key item=val --->
+                            <li class="mt-1">
+                                <div class="text-nowrap text-truncate">
+                                    <a href="#" title="">
+                                        <span class="date">
+                                            2024-11-20
+                                        </span>
+                                        <span class="subTitle">
+                                            標題
+                                        </span>
+
+                                        <span class="badge badge-success mx-1">
+                                            單位
+                                        </span>
+                                    </a>
+                                </div>
+                            </li>
+                            <!--- /foreach --->
+                        </ul>
+                        <div class="col-12 text-center mt-1">
+                            <button id="health-more" class="btn btn-outline-danger  btn-sm" title="更多衛教專區">
+                                更多衛教專區
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 衛教專區end -->
+
+                <!-- 相關出版書籍start -->
+                <div class="tab-pane" id="nav-newstxt" role="tabpanel" aria-labelledby="nav-newstxt-tab">
+                    <div class="row newsTxt position-relative">
+                        <ul class="w-100">
+                            <!--- foreach from=$book_list key=key item=val --->
+                            <li class="mt-1">
+                                <div class="text-nowrap text-truncate">
+                                    <a href="<!--- $val.LINK --->" title="<!--- $val.TITLE --->">
+
+                                        <span class="subTitle">
+                                            <!--- $val.TITLE --->
+                                        </span>
+                                    </a>
+                                </div>
+                            </li>
+                            <!--- /foreach --->
+                        </ul>
+                        <div class="col-12 text-center mt-1">
+                            <button id="book-more" class="btn btn-outline-danger  btn-sm"
+                                title="更多<!--- $book_menu.TITLE --->">
+                                更多<!--- $book_menu.TITLE --->
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 相關出版書籍end -->
+        </div>
+    </div>
+    
+    
+
+
+    <script src="js/jquery-3.7.0.min.js"></script><!--頁籤切換-->
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.js"></script><!--頁籤切換-->
+    <script src="js/tab.js"></script><!--頁籤切換-->
+    <script>
+       
+    </script>
+</body>
+
+</html>
+
+
+
+<script>
+
+</script>

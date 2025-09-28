@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.css">
+    <title>表單</title>
+    <style>
+        .aboubtn_title_curr {
+            color: #ffffff;
+            padding: 4px 20px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            border-radius: 1.2rem;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 3px;
+            background-color: #6aa0b3;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="aboubtn_title_curr col-12">
+                表單
+            </div>
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#list">
+            加入
+        </button>
+        <table class="table ">
+            <thead>
+                <th>名稱</th>
+                <th>價格</th>
+                <th>數量</th>
+                <th>上下架</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="list" tabindex="-1" role="dialog" aria-labelledby="list" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">新增產品</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-2 col-form-label">名稱</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="title" placeholder="名稱">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="price" class="col-sm-2 col-form-label">價格</label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="price">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="num" class="col-sm-2 col-form-label">數量</label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="num">
+                        </div>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sale" id="sale1" value="Y" checked>
+                        <label class="form-check-label" for="sale1">
+                            上架
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sale" id="sale2" value="N">
+                        <label class="form-check-label" for="sale2">
+                            下架
+                        </label>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submit()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+
+    <script>
+        function submit(){
+            var sale=$('input[name="sale"]').is(':checked')
+            //這個選擇器會選擇 name="sale" 的 radio 按鈕中被選中的那一個。
+            //通常與 .val() 結合使用，以獲取被選中按鈕的值。
+            var sale=$('input[name="sale"]:checked').val()
+            console.log(sale)
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>打卡功能</title>
+</head>
+<style>
+    .aboubtn_title_curr {
+        color: #ffffff;
+        padding: 4px 20px;
+        font-size: 1.3rem;
+        font-weight: 500;
+        border-radius: 1.2rem;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        margin: 3px;
+        background-color: #6aa0b3;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <form action="">
+            <div class="row">
+                <div class="col-12  aboubtn_title_curr">
+                    <h3>打卡功能</h3>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-2 text-end">
+                    <label for="name" class="col-form-label">姓名</label>
+                </div>
+                <div class="col-md-4">
+                    <input id="name" name=name type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-2 text-end">
+                    <label for="lng" class="col-form-label">經度</label>
+                </div>
+                <div class="col-md-4">
+                    <input id="lng" name="lng" type="text" class="form-control" readonly>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-2 text-end">
+                    <label for="lat" class="col-form-label">緯度</label>
+                </div>
+                <div class="col-md-4">
+                    <input id="lat" name="lat" type="text" class="form-control" readonly>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-2 text-end">
+                    <label for="lat" class="col-form-label">距離慶豐牛排</label>
+                </div>
+                <div class="col-md-4">
+                    <input id="distance" name="distance" type="text" class="form-control" readonly>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-4 text-center">
+                    <button class="btn btn-primary" value="送出">送出</button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            
+            //每秒刷新一次定位
+            setInterval(position , 1000);
+        });
+        //取得當前定位
+        function position() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+
+                    var lat = position.coords.latitude
+                    var lng = position.coords.longitude
+                   
+                    //慶豐牛排
+                    var p_lat = 24.07527236
+                    var p_lng = 120.5456268
+                   
+                    $("#lat").val(lat);
+                    $("#lng").val(lng);
+                    console.log(lat + "," + lng)
+                    
+                    var dis=distance(lat,lng,p_lat,p_lng,"K")
+                    $("#distance").val(dis);
+                });
+            }
+        }
+
+        //計算兩點距離
+        function distance(lat1, lon1, lat2, lon2, unit) {
+            if ((lat1 == lat2) && (lon1 == lon2)) {
+                return 0;
+            }
+            else {
+                var radlat1 = Math.PI * lat1 / 180;
+                var radlat2 = Math.PI * lat2 / 180;
+                var theta = lon1 - lon2;
+                var radtheta = Math.PI * theta / 180;
+                var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+                if (dist > 1) {
+                    dist = 1;
+                }
+                dist = Math.acos(dist);
+                dist = dist * 180 / Math.PI;
+                dist = dist * 60 * 1.1515;
+                if (unit == "K") { dist = dist * 1.609344 }
+                if (unit == "N") { dist = dist * 0.8684 }
+                return dist;
+            }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

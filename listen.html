@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>監聽</title>
+    <style>
+        .aboubtn_title_curr {
+            color: #ffffff;
+            padding: 4px 20px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            border-radius: 1.2rem;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 3px;
+            background-color: #6aa0b3;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="aboubtn_title_curr">
+                JQUERY寫法
+            </div>
+        </div>  
+       
+        <div class="row mt-5">
+            <div class="col-md-3 border">
+                <a class="btn btn-primary" id="listen01" href="javascript:void(0)">點擊監聽1</a>
+                <a class="btn btn-primary" id="listen02" href="javascript:void(0)">點擊監聽2</a>
+            </div>
+
+            <div class="col-md-3 border">
+                <p> $("#listen01").click(function(){</p>
+                <p>alert("監聽01")</p>
+                <p>})</p>
+            </div>
+            <div class="col-md-3 border">
+                <p> $("#listen01").on("click",function(){</p>
+                <p>alert("點擊監聽2");</p>
+                <p>});</p>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-3 border">
+                <a class="btn btn-primary" id="listen03" href="javascript:void(0)">hover監聽</a>
+                <br>
+                <a class="btn btn-primary mt-5" id="listen04" href="javascript:void(0)">滑鼠進+滑鼠出</a>
+                <br>
+                <div id="result03"></div>
+            </div>
+
+            <div class="col-md-3 border">
+                <p>$("#listen03").hover(function(){</p>
+                <p>$("#result03").append("hover監聽")</p>
+                <p>})</p>
+            </div>
+            <div class="col-md-3 border">
+                <p> $("#listen04").mouseenter(function(){</p>
+                <p>$("#result03").append("mouseenter")</p>
+                <p> })</p>
+                <p>$("#listen04").mouseleave(function(){</p>
+                <p>$("#result03").append("mouseleave")</p>
+                <p>})</p>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-3 border">
+                <a class="btn btn-primary" id="listen05" href="javascript:void(0)">focus(得到焦點)(tab)</a>
+                <br>
+                <a class="btn btn-primary  mt-5" id="listen06" href="javascript:void(0)">blur(失去焦點)(tab)</a>
+            </div>
+            <div class="col-md-3 border">
+                <p>$("#listen05").focus(function () {</p>
+                <p>$("#result05").append("focus(得到焦點))</p>
+                <p>})</p>
+            </div>
+            <div class="col-md-3 border">
+                <p>$("#listen06").blur(function () {</p>
+                <p>$("#result05").append("blur(失去焦點)")</p>
+                <p>})</p>
+            </div>
+            <div id="result05"></div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="aboubtn_title_curr">
+                HTML寫法
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            
+            <div class="col-md-3 border">
+                <a class="btn btn-primary"  href="javascript:void(0)" onclick="click01()">點擊監聽1</a>
+            </div>
+            <div class="col-md-3 border">
+                <p> onclick="click01()"</p>
+                <p>function click01(){</p>
+                <p> alert("click01")</p>    
+                <p>}</p>
+            </div>
+        </div>  
+
+        <div class="row">
+            <div class="col-md-3 border">
+                <a class="btn btn-primary"  href="javascript:void(0)" onmouseover="onmouseover01()">onmouseover</a>
+            </div>
+            <div class="col-md-3 border">
+                <p> onmouseover="onmouseover01()"></p>
+                <p>function onmouseover01(){</p>
+                <p> alert("onmouseover01")</p>    
+                <p>}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 border">
+                <a class="btn btn-primary"  href="javascript:void(0)" onfocus="focus01()">onfocus01</a>
+            </div>
+            <div class="col-md-3 border">
+                <p> onmouseover="onmouseover01()"></p>
+                <p>function onmouseover01(){</p>
+                <p> alert("onmouseover01")</p>    
+                <p>}</p>
+            </div>
+            <div id="result_focus01"> </div>
+        </div>
+
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script>
+         /*點擊*/
+        $("#listen01").click(function () {
+            alert("監聽01")
+        })
+
+        $("#listen02").on("click", function () {
+            alert("監聽02");
+        });
+
+        /*滑鼠進出*/
+        $("#listen03").hover(function () {
+            $("#result03").append("hover監聽")
+        })
+
+        $("#listen04").mouseenter(function () {
+
+            $("#result03").append("mouseenter")
+        })
+        $("#listen04").mouseleave(function () {
+
+            $("#result03").append("mouseleave")
+        })
+
+
+        /*tab*/
+        $("#listen05").focus(function () {
+
+            $("#result05").append("focus(得到焦點)(")
+        })
+        $("#listen06").blur(function () {
+
+            $("#result05").append("blur(失去焦點)")
+
+        })
+
+        function click01(){
+            alert("click01")
+        }
+
+        function onmouseover01(){
+            alert('onmpuseover')
+        }
+
+        function focus01(){
+            
+            $("#result_focus01").append("focus01")
+        }
+
+    </script>
+</body>
+
+</html>

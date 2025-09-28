@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三角形 + 梯形 + 梯形 金字塔</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #f4f1de;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .pyramid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  /* 上層三角形 */
+  .triangle {
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;/*左邊邊界 距離右邊10px*/
+    border-right: 80px solid transparent;
+    border-bottom: 160px solid #e63946; /*高度*/
+    margin-bottom: -1px; /* 防止出現縫隙 */
+  }
+
+  /* 中層梯形 */
+  .trapezoid1 {
+    width: 160px;
+    height: 50px;
+    background-color: #f77f00;
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    margin-bottom: -1px; /* 防止出現縫隙 */
+  }
+
+  /* 底層梯形 */
+  .trapezoid2 {
+    width: 200px;
+    height: 60px;
+    background-color: #2a9d8f;
+    clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+  }
+
+</style>
+</head>
+<body>
+
+<div class="pyramid">
+  <!-- 最上方的三角形 -->
+  <div class="triangle">123</div>
+
+  <!-- 中間的梯形 -->
+  <div class="trapezoid1"></div>
+
+  <!-- 最底部的梯形 -->
+  <div class="trapezoid2"></div>
+</div>
+
+</body>
+</html>

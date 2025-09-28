@@ -1,0 +1,3 @@
+{"name":"大冰杖","ap":125,"price":"4E","note":"","clear":"Y","date":"2024-12-20"},
+{"name":"大冰杖","ap":129,"price":"6E","note":"","clear":"Y","date":"2024-12-20"},
+{"name":"大火杖","ap":123,"price":"15E","note":"","clear":"Y","date":"2024-12-20"}
